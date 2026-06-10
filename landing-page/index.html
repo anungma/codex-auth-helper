@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex Codex Auth Helper - One-Click ChatGPT Login Without Phone Verification</title>
+  <meta name="description"
+    content="Designed for Codex to avoid repeated logins! Securely extract and parse ChatGPT Session locally, generate auth.json config in one click. 100% local, data never touches the cloud.">
+  <meta name="keywords" content="Codex, ChatGPT, auth.json, Chrome Extension, phone verification bypass, Session extraction">
+  <!-- Import green theme stylesheet (busts all browser disk caches) -->
+  <link rel="stylesheet" href="style-green.css">
+</head>
+
+<body>
+
+  <!-- 1. Glassmorphism Navigation Bar -->
+  <header class="header" id="main-header">
+    <div class="container">
+      <div class="logo-wrapper">
+        <div class="logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <span class="logo-text">Codex Auth Helper</span>
+      </div>
+
+      <nav class="nav-menu">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#workflow" class="nav-link">How It Works</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="privacy.html" class="btn btn-secondary" id="nav-btn-sec">Privacy Policy</a>
+        <a href="https://github.com/zhishile/codex-auth-helper" target="_blank" rel="noopener" class="btn btn-secondary" id="nav-btn-git">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;">
+            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+          </svg>
+          <span>GitHub Repo</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          <span>V1.0.0 Official Release — Built for Codex Development</span>
+        </div>
+        <h1>
+          Skip Verification, Connect Seamlessly<br>
+          <span class="hero-highlight">Codex Quick Login</span>
+        </h1>
+
+      </div>
+      <!-- <p>
+        A Chrome extension designed to address the pain points of frequent Codex login expiry and phone number verification. Locally extracts and parses ChatGPT login info at lightning speed, converting it into a Codex identity config file with 100% local secure processing.
+      </p> -->
+      <div class="hero-actions">
+        <a href="https://chromewebstore.google.com/detail/ceenjghooaemkocekdaaianapgmmilph" target="_blank" rel="noopener" class="btn btn-primary" id="hero-btn-download">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+          </svg>
+          <span>Install Chrome Extension</span>
+        </a>
+        <a href="#workflow" class="btn btn-secondary" id="hero-btn-learn">
+          <span>Learn How It Works</span>
+        </a>
+      </div>
+    </div>
+    <br />
+
+    <!-- High-fidelity plugin interaction panel mockup -->
+    <div class="hero-mockup-wrapper">
+      <div class="mockup-container" id="mockup-panel">
+        <div class="mockup-header">
+          <div class="mockup-controls">
+            <span class="mockup-dot red"></span>
+            <span class="mockup-dot yellow"></span>
+            <span class="mockup-dot green"></span>
+          </div>
+          <div class="mockup-title">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+            <span>local-session-extractor // popup.html</span>
+          </div>
+          <div class="mockup-actions">
+            <span class="mockup-action-btn">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <div class="mockup-body">
+          <!-- Mockup control panel left side -->
+          <div class="mockup-sidebar">
+            <div class="mockup-sidebar-top">
+              <div class="plugin-brand">
+                <div class="plugin-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                  </svg>
+                </div>
+                <div class="plugin-info">
+                  <h4>Codex Auth Helper</h4>
+                  <span>Codex Auth Helper v1.0.0</span>
+                </div>
+              </div>
+
+              <div class="plugin-status-card">
+                <div class="status-row">
+                  <span class="status-label">Host Connection</span>
+                  <span class="status-value" id="host-status">
+                    <span class="status-badge" id="host-badge">Connected</span>
+                  </span>
+                </div>
+                <div class="status-row">
+                  <span class="status-label">ChatGPT Login</span>
+                  <span class="status-value" id="login-status">Detected</span>
+                </div>
+                <div class="status-row">
+                  <span class="status-label">Account Tier</span>
+                  <span class="status-value" id="user-tier">ChatGPT Plus</span>
+                </div>
+              </div>
+
+              <button class="btn-trigger" id="btn-mock-extract">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 4 23 10 17 10" />
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                </svg>
+                <span id="btn-extract-text">Extract & Parse</span>
+              </button>
+            </div>
+
+            <div class="sidebar-note">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="16" x2="12" y2="12" />
+                <line x1="12" y1="8" x2="12.01" y2="8" />
+              </svg>
+              <span>All data stays in your local browser, never uploaded to the cloud, ensuring core account data security.</span>
+            </div>
+          </div>
+
+          <!-- Mockup control panel right side -->
+          <div class="mockup-main">
+            <div class="main-tab-bar">
+              <div class="tabs">
+                <span class="tab active" id="tab-json">Smart Parse</span>
+                <span class="tab" id="tab-log">Live Log</span>
+              </div>
+              <div style="font-size:0.75rem; color:var(--text-muted);" id="mockup-time">
+                Expires: 2026-06-25 10:39:11
+              </div>
+            </div>
+
+            <div class="code-wrapper" id="console-display">
+              <div class="code-empty" id="console-empty-state">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="22 12 16 12 14 15 10 15 8 12 2 12" />
+                  <path
+                    d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+                </svg>
+                <span>Waiting to extract and generate config file...</span>
+              </div>
+              <div class="code-container" id="console-code-state" style="display: none;"></div>
+            </div>
+
+            <div class="code-action-bar">
+              <button class="code-btn" id="btn-mock-copy" disabled>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                </svg>
+                <span id="btn-copy-text">Copy Config</span>
+              </button>
+              <button class="code-btn" id="btn-mock-download" disabled>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+                </svg>
+                <span>Download auth.json</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- 3. Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Core Advantages</span>
+        <h2>Why Choose Codex Auth Helper?</h2>
+        <p>Say goodbye to complex command-line Session extraction. A local, agile solution tailor-made for Codex.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Card 1 -->
+        <div class="feat-card reveal">
+          <div class="feat-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+              <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            </svg>
+          </div>
+          <h3>100% Local Processing</h3>
+          <p>All core Session data and credentials stay in the local browser. The extension never uploads any data to third-party servers, ensuring absolute account security.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="feat-card reveal">
+          <div class="feat-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+            </svg>
+          </div>
+          <h3>One-Click Extraction & Smart Parsing</h3>
+          <p>After logging into ChatGPT in your browser, click the extension to automatically extract Session credentials and intelligently parse expiry time, user auth tier, and more.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="feat-card reveal">
+          <div class="feat-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+              <polyline points="10 9 9 9 8 9" />
+            </svg>
+          </div>
+          <h3>Perfect Config File Generation</h3>
+          <p>Automatically assembles extracted data into a fully Codex-compatible <code>auth.json</code> config, with one-click copy and quick file download, ready to use immediately.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Workflow Section (How It Works) -->
+  <section class="workflow" id="workflow">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">Streamlined Workflow</span>
+        <h2>Just Three Steps to Activate Codex</h2>
+        <p>An automated configuration workflow, freeing you from phone number login verification and token expiry hassles.</p>
+      </div>
+
+      <div class="workflow-steps">
+        <!-- Step 1 -->
+        <div class="step-card reveal">
+          <div class="step-number">01</div>
+          <h3>Log In to ChatGPT</h3>
+          <p>Log in to ChatGPT using your Chrome browser and keep the page active.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card reveal">
+          <div class="step-number">02</div>
+          <h3>Activate Extension & Export Auth Info</h3>
+          <p>Click the extension icon in the top-right corner. After smart parsing your auth info, click "Export Auth Info" to save auth.json locally.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card reveal">
+          <div class="step-number">03</div>
+          <h3>Load auth.json into Codex Config Directory</h3>
+          <p>Move auth.json to your local Codex config directory:</p>
+          <div class="path-details">
+            <p><strong>Windows:</strong> <code>%USERPROFILE%\.codex\auth.json</code></p>
+            <p><strong>macOS:</strong> <code>~/.codex/auth.json</code></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FAQ (FAQ) -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-tag">FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about Codex Auth Helper.</p>
+      </div>
+
+      <div class="faq-list">
+        <!-- Question 1 -->
+        <details class="faq-item reveal">
+          <summary>
+            <span>Why does Codex require phone verification, and how does this tool solve it?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </summary>
+          <div class="faq-content">
+            Codex often triggers phone verification due to security checks. This extension lets you first log in to the ChatGPT website normally, then extract the Session credentials as auth.json. By importing credentials directly, Codex
+            can skip SMS verification and CAPTCHA challenges, connecting securely and smoothly.
+          </div>
+        </details>
+
+        <!-- Question 2 -->
+
+        <details class="faq-item reveal">
+          <summary>
+            <span>Is this extension safe? Will it leak my ChatGPT account Session?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </summary>
+          <div class="faq-content">
+            Extremely safe. The extension code runs entirely within the local browser sandbox with no external server sync endpoints. We guarantee 100% that data never leaves your device. All source code is open on GitHub for you to inspect at any time — absolutely no sensitive data is collected.
+          </div>
+        </details>
+
+        <!-- Question 3 -->
+        <details class="faq-item reveal">
+          <summary>
+            <span>How long does my auth info remain valid?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </summary>
+          <div class="faq-content">
+            The validity period depends entirely on the OpenAI ChatGPT Session lifespan. Typically sessions last two weeks to one month. The extension automatically parses the <code>expires</code>
+            field with millisecond precision, and the mockup panel shows exactly how long until expiry. When expired, simply click once to re-export.
+          </div>
+        </details>
+
+        <!-- Question 4 -->
+        <details class="faq-item reveal">
+          <summary>
+            <span>Which browsers are supported?</span>
+            <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </summary>
+          <div class="faq-content">
+            All Chromium-based browsers are supported, including Google Chrome, Microsoft Edge, Arc, Brave, Opera
+            etc. Simply enable "Developer mode", select "Load unpacked", and import the root folder containing manifest.json.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CTA Section -->
+  <section class="cta-banner" id="cta">
+    <div class="container">
+      <div class="cta-box reveal">
+        <div class="cta-box-content">
+          <h2>Start Your Agile Codex Development Journey</h2>
+          <p>Leave tedious verification behind and keep your development flow uninterrupted. A 100% local Codex secure login companion.</p>
+          <a href="https://chromewebstore.google.com/detail/ceenjghooaemkocekdaaianapgmmilph" target="_blank" rel="noopener" class="btn btn-primary" id="footer-btn-download">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
+            </svg>
+            <span>Install Chrome Extension</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-wrapper">
+            <div class="logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <span class="logo-text">Codex Auth Helper</span>
+          </div>
+          <p>
+            A painless Session extraction and configuration tool for ChatGPT login. Runs locally, protects privacy, and empowers development.
+          </p>
+        </div>
+        <div class="footer-links">
+          <div class="link-group">
+            <h5>Navigate</h5>
+            <a href="#features">Features</a>
+            <a href="#workflow">How It Works</a>
+            <a href="#faq">FAQ</a>
+          </div>
+          <div class="link-group">
+            <h5>Related</h5>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="https://github.com/zhishile/codex-auth-helper" target="_blank" rel="noopener">GitHub Repo</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>2026 &copy; Codex Auth Helper</p>
+        <div class="footer-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+            <polyline points="22 4 12 14.01 9 11.01" />
+          </svg>
+          <span>Passed local Chromium security audit</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Import JavaScript -->
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Codex Auth Helper</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Bagian Header -->
+    <header class="app-header">
+      <div class="logo-container">
+        <div class="logo-glow"></div>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        </svg>
+        <div class="logo-text">
+          <h1>Codex Auth Helper</h1>
+          <span class="logo-sub">Codex Auth Helper v1.0.0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="app-main">
+
+      <!-- Status Memuat -->
+      <div id="state-loading" class="state-container active">
+        <div class="loader">
+          <div class="loader-ring"></div>
+          <div class="loader-dot"></div>
+        </div>
+        <p class="loading-text">Securely fetching login info...</p>
+      </div>
+
+      <!-- Status Belum Login -->
+      <div id="state-unauthorized" class="state-container">
+        <div class="alert-icon-container">
+          <svg class="alert-icon animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+          </svg>
+        </div>
+        <h2 class="state-title">ChatGPT Login Not Detected</h2>
+        <p class="state-desc">Please log in to your ChatGPT account first. The extension will securely extract login credentials from your local browser cache, bypassing phone verification.</p>
+        <button id="btn-login" class="btn-primary ripple">
+          <span>Go to ChatGPT Login</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Status Sudah Login -->
+      <div id="state-authorized" class="state-container">
+        <!-- Kartu Profil -->
+        <div class="profile-card">
+          <div class="profile-avatar-container">
+            <img id="user-avatar" class="profile-avatar" src="" alt="User Avatar">
+            <div class="avatar-ring"></div>
+          </div>
+          <div class="profile-info">
+            <h3 id="user-name">Loading...</h3>
+            <p id="user-email">Loading...</p>
+          </div>
+          <div id="badge-plan" class="plan-badge">FREE</div>
+        </div>
+
+        <!-- Panel Detail -->
+        <div class="details-panel glass-card">
+          <div class="detail-row">
+            <span class="detail-label">Status:</span>
+            <span class="detail-value text-glow-success">Logged In</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Expires At:</span>
+            <span id="token-expires" class="detail-value">Loading...</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Time Left:</span>
+            <span id="token-countdown" class="detail-value text-glow-green">Loading...</span>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="action-group">
+          <button id="btn-download" class="btn-primary ripple btn-pulse">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span>Export Auth Info</span>
+          </button>
+        </div>
+
+        <!-- Panduan Penggunaan (tertutup secara default) -->
+        <details class="accordion-card">
+          <summary class="accordion-header">
+            <h4>Usage Instructions</h4>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="accordion-content">
+            <div class="guide-steps">
+              <div class="step-item">
+                <span class="step-num">1</span>
+                <div class="step-content">
+                  <h5>Step 1: Export Auth Info</h5>
+                  <p>Click the "Export Auth Info" button above. The system will automatically export your local ChatGPT authentication data and download it as an <code>auth.json</code> file.</p>
+                </div>
+              </div>
+              <div class="step-item">
+                <span class="step-num">2</span>
+                <div class="step-content">
+                  <h5>Step 2: Move auth.json to Codex Config Directory</h5>
+                  <p>Move the <code>auth.json</code> file to your local Codex configuration directory:</p>
+                  <div class="path-details">
+                    <p><strong>Windows:</strong> <code>%USERPROFILE%\.codex\auth.json</code></p>
+                    <p><strong>macOS:</strong> <code>~/.codex/auth.json</code></p>
+                  </div>
+                </div>
+              </div>
+              <div class="step-item">
+                <span class="step-num">3</span>
+                <div class="step-content">
+                  <h5>Step 3: Launch Codex</h5>
+                  <p>Once the file is in place, simply start or restart your Codex client. Authorization will be loaded automatically, bypassing any phone verification.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <!-- Pemberitahuan Privasi Data (tertutup secara default) -->
+        <details class="accordion-card">
+          <summary class="accordion-header">
+            <h4>Data Privacy Notice</h4>
+            <svg class="accordion-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="accordion-content">
+            <ul class="privacy-list">
+              <li>
+                <span class="privacy-bullet success">◉</span>
+                <div class="privacy-item">
+                  <strong>Local Processing</strong>: Data never leaves your device
+                </div>
+              </li>
+              <li>
+                <span class="privacy-bullet primary">◉</span>
+                <div class="privacy-item">
+                  <strong>Privacy Safe</strong>: Processed entirely in your browser
+                </div>
+              </li>
+              <li>
+                <span class="privacy-bullet warning">◉</span>
+                <div class="privacy-item">
+                  <strong>Quick Export</strong>: Reduces repeated login verification
+                </div>
+              </li>
+            </ul>
+          </div>
+        </details>
+
+      </div>
+
+    </main>
+
+    <!-- Bagian Footer -->
+    <footer class="app-footer">
+      <div class="safety-badge">
+        <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        <span>No Cloud Upload • Privacy Safe • Local Sandbox Processing</span>
+      </div>
+    </footer>
+
+    <!-- Notifikasi Toast -->
+    <div id="toast" class="toast-container">
+      <div class="toast-content">
+        <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+        <span id="toast-message">Success</span>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>
