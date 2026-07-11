@@ -20,7 +20,7 @@
         </svg>
         <div class="logo-text">
           <h1>Codex Auth Exporter</h1>
-          <span class="logo-sub">Codex Auth Exporter v1.1.0</span>
+          <span id="extension-version" class="logo-sub">Codex Auth Exporter</span>
         </div>
       </div>
     </header>
@@ -86,14 +86,37 @@
           </div>
         </div>
 
-        <!-- Action Button -->
+        <div class="workspace-panel glass-card">
+          <div class="workspace-panel-header">
+            <div>
+              <h4>Exportable Accounts</h4>
+              <p id="workspace-summary">Wait! Inspecting workspace access.</p>
+            </div>
+            <div class="workspace-status">
+              <span id="workspace-spinner" class="workspace-spinner" aria-hidden="true"></span>
+              <span id="workspace-count" class="workspace-count-badge">0</span>
+            </div>
+          </div>
+          <div id="workspace-list" class="workspace-list">
+            <span class="workspace-empty">Loading account names...</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
         <div class="action-group">
           <button id="btn-download" class="btn-primary ripple btn-pulse">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round"
                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
-            <span>Export Auth Info</span>
+            <span>Export Current Account</span>
+          </button>
+          <button id="btn-export-all" class="btn-secondary ripple">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v1a3 3 0 003 3h10a3 3 0 003-3v-1" />
+            </svg>
+            <span>Export All Accounts</span>
           </button>
         </div>
 
@@ -110,15 +133,15 @@
               <div class="step-item">
                 <span class="step-num">1</span>
                 <div class="step-content">
-                  <h5>Step 1: Export Auth Info</h5>
-                  <p>Click the "Export Auth Info" button above. The system will automatically export your local ChatGPT authentication data and download it as an <code>auth.json</code> file.</p>
+                  <h5>Step 1: Export Workspace Auth</h5>
+                  <p>Click "Export Current Account" for the selected ChatGPT account, or "Export All Accounts" to download one backup file per active personal/workspace account.</p>
                 </div>
               </div>
               <div class="step-item">
                 <span class="step-num">2</span>
                 <div class="step-content">
-                  <h5>Step 2: Move auth.json to Codex Config Directory</h5>
-                  <p>Move the <code>auth.json</code> file to your local Codex configuration directory:</p>
+                  <h5>Step 2: Rename and Move to Codex Config Directory</h5>
+                  <p>To use the exported backup with Codex, rename or copy it to <code>auth.json</code> in your local Codex configuration directory:</p>
                   <div class="path-details">
                     <p><strong>Windows:</strong> <code>%USERPROFILE%\.codex\auth.json</code></p>
                     <p><strong>macOS:</strong> <code>~/.codex/auth.json</code></p>
@@ -147,19 +170,19 @@
           <div class="accordion-content">
             <ul class="privacy-list">
               <li>
-                <span class="privacy-bullet success">◉</span>
+                <span class="privacy-bullet success">◎</span>
                 <div class="privacy-item">
                   <strong>Local Processing</strong>: Data never leaves your device
                 </div>
               </li>
               <li>
-                <span class="privacy-bullet primary">◉</span>
+                <span class="privacy-bullet primary">◎</span>
                 <div class="privacy-item">
                   <strong>Privacy Safe</strong>: Processed entirely in your browser
                 </div>
               </li>
               <li>
-                <span class="privacy-bullet warning">◉</span>
+                <span class="privacy-bullet warning">◎</span>
                 <div class="privacy-item">
                   <strong>Quick Export</strong>: Reduces repeated sign-in friction
                 </div>
@@ -199,3 +222,4 @@
 </body>
 
 </html>
+

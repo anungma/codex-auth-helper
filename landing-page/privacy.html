@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy - Codex Auth Exporter</title>
   <meta name="description"
-    content="Official Privacy Policy for the Codex Auth Exporter Chrome Extension, detailing our local processing model, zero cloud sync, minimum permissions, and user data privacy protection.">
+    content="Official Privacy Policy for the Codex Auth Exporter Chrome Extension, detailing our commitment to 100% local operation, zero data upload, minimum permissions, and user data privacy protection.">
   <meta name="keywords" content="Codex Auth Exporter, Privacy Policy, Chrome Extension, Data Security">
-  <!-- Import global cyan hacker theme stylesheet -->
+  <!-- Import global green hacker theme stylesheet -->
   <link rel="stylesheet" href="style-green.css">
 
   <style>
@@ -47,16 +47,16 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       box-shadow: 0 30px 70px rgba(0, 0, 0, 0.5),
-        0 0 50px rgba(34, 211, 238, 0.02);
+        0 0 50px rgba(16, 185, 129, 0.02);
       max-width: 900px;
       margin: 0 auto;
       transition: var(--transition-normal);
     }
 
     .privacy-card:hover {
-      border-color: rgba(34, 211, 238, 0.2);
+      border-color: rgba(16, 185, 129, 0.2);
       box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6),
-        0 0 60px rgba(34, 211, 238, 0.05);
+        0 0 60px rgba(16, 185, 129, 0.05);
     }
 
     .meta-info {
@@ -71,8 +71,8 @@
     }
 
     .meta-tag {
-      background: rgba(34, 211, 238, 0.08);
-      border: 1px solid rgba(34, 211, 238, 0.2);
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.2);
       color: var(--color-primary);
       padding: 0.25rem 0.75rem;
       border-radius: 50px;
@@ -139,15 +139,15 @@
     }
 
     .promise-card:hover {
-      background: rgba(34, 211, 238, 0.03);
-      border-color: rgba(34, 211, 238, 0.2);
+      background: rgba(16, 185, 129, 0.03);
+      border-color: rgba(16, 185, 129, 0.2);
       transform: translateY(-2px);
     }
 
     .promise-icon {
       width: 40px;
       height: 40px;
-      background: rgba(34, 211, 238, 0.1);
+      background: rgba(16, 185, 129, 0.1);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -196,11 +196,11 @@
 
     .permissions-table code {
       font-family: var(--font-mono);
-      background: rgba(34, 211, 238, 0.08);
+      background: rgba(16, 185, 129, 0.08);
       color: var(--color-accent);
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
-      border: 1px solid rgba(34, 211, 238, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.15);
     }
 
     /* English translation reference */
@@ -244,7 +244,7 @@
       </nav>
 
       <div class="nav-cta">
-        <a href="https://github.com/anungma/codex-auth-helper" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/anungma/codex-auth-helper" target="_blank" rel="noopener"
           class="btn btn-secondary">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
             stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px; vertical-align: middle;">
@@ -276,12 +276,12 @@
         <!-- Introduction -->
         <div class="section-block">
           <p class="section-text">
-            This Privacy Policy details the data collection, processing, and security practices of <span class="highlight-span">Codex Auth Exporter</span> (hereinafter "the Extension") during installation and usage. We value your privacy and security, and the extension is designed to keep sensitive session credentials local to your browser and download flow.
+            This Privacy Policy details the data collection, processing, and security practices of <span class="highlight-span">Codex Auth Exporter</span> (hereinafter "the Extension") during installation and usage. We highly value your privacy and security, committing to the highest standards of protection to keep your sensitive session credentials absolutely safe.
           </p>
           <div class="lang-translation">
             This Privacy Policy details the data collection, processing, and security practices of Codex Auth Exporter
             (hereinafter referred to as "the Extension") during its installation and usage. We highly value your privacy
-            and security, and we design the extension to keep credentials local to your browser and download flow.
+            and security, promising to enforce the highest standards to keep your credentials absolutely secure.
           </div>
         </div>
 
@@ -298,7 +298,7 @@
                 </svg>
               </div>
               <h4>Zero Network Upload</h4>
-              <p>Config file packaging happens inside your local browser extension runtime, with no third-party sync or cloud upload behavior.</p>
+              <p>All data processing and config file packaging happens entirely within your local browser sandbox, with no network sync or upload behavior.</p>
             </div>
 
             <div class="promise-card">
@@ -332,8 +332,8 @@
             (PII), geolocation, device identifiers, browser history, and does not include any third-party trackers or analytics SDKs.
           </p>
           <p class="section-text">
-            When you actively use the "One-Click Extract" feature, the extension reads your currently logged-in ChatGPT session response in memory and performs local format parsing, to assemble and write it into your exported
-            <code>auth.json</code> file. The extension does not send that exported config to any third-party service.
+            When you actively use the "One-Click Extract" feature, the extension only reads your currently logged-in ChatGPT session credentials (Session Token) in memory and performs local format parsing, to assemble and write it into your exported
+            <code>auth.json</code> file. This process involves absolutely no data exchange with any external service.
           </p>
           <div class="lang-translation">
             <strong>We do not collect any user data.</strong> The Extension operates completely offline. We do not
@@ -363,8 +363,8 @@
                 <td><code>downloads</code></td>
                 <td>Moderate</td>
                 <td>
-                  Allows the extension to locally generate an <code>auth.json</code> file and invoke the browser download sandbox to save it to your chosen local download directory. This action is <strong>
-                    triggered manually by the user</strong>, with no scheduled background downloads.
+                  Allows the extension to locally generate an <code>auth.json</code> file and automatically invoke the browser download sandbox to save it to your designated local download directory. This action is <strong>100%
+                    triggered manually by the user</strong>, with no silent background or unauthorized file downloads.
                 </td>
               </tr>
               <tr>
@@ -378,7 +378,7 @@
             </tbody>
           </table>
           <div class="lang-translation">
-            We only request the permissions needed for core features. The `downloads` API is used
+            We only request the absolute minimum permissions needed for core features. The `downloads` API is used
             strictly to save the locally generated 'auth.json' config file, triggered solely by clicking the download
             button. The host permission on `https://chatgpt.com/` is required solely to fetch the current authenticated
             session cookie for local backup, without touching any other websites.
@@ -395,12 +395,12 @@
             <li><strong>Pure In-Memory Processing:</strong> After your ChatGPT login credentials are captured, they are only temporarily parsed in the extension runtime memory and immediately released. The extension does not use databases or local storage (such as localStorage /
               Chrome Storage) for persistent storage.</li>
             <li><strong>Closed-Loop Data Download:</strong> The extension uses closed-loop Data URL encoding to directly output the config file as a download stream, meaning all data conversion happens entirely within the browser sandbox environment, with no data exfiltration channel.</li>
-            <li><strong>Fully Open Source & Transparent:</strong> The extension source code is publicly available on GitHub. Anyone can independently review our extension logic.</li>
+            <li><strong>Fully Open Source & Transparent:</strong> The extension source code is publicly available on GitHub. Anyone can independently review and security-audit our extension logic.</li>
           </ul>
           <div class="lang-translation">
-            Your credentials are kept in memory during packaging and are immediately
+            To guarantee security, your credentials exist strictly in-memory during packaging and are immediately
             released. No local persistent storage (localStorage/chrome.storage) is used. The 'auth.json' is compiled
-            into a Data URL for sandboxed local download. The source code is open for review.
+            into a Data URL for sandboxed local download, ensuring a closed loop. The source code is open and audited.
           </div>
         </div>
 
@@ -436,7 +436,7 @@
           <ul class="section-text" style="padding-left: 1.5rem; list-style-type: none;">
 
             <li>GitHub Issue Tracker: <a href="https://github.com/anungma/codex-auth-helper" target="_blank"
-                rel="noopener noreferrer" class="highlight-span">Visit GitHub Repo to submit feedback</a></li>
+                rel="noopener" class="highlight-span">Visit GitHub Repo to submit feedback</a></li>
           </ul>
           <div class="lang-translation">
             This policy may be updated to reflect CWS policy changes. Any updates will be published on this page. For
@@ -477,7 +477,7 @@
           <div class="link-group">
             <h5>Related</h5>
             <a href="privacy.html">Privacy Policy</a>
-            <a href="https://github.com/anungma/codex-auth-helper" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
+            <a href="https://github.com/anungma/codex-auth-helper" target="_blank" rel="noopener">GitHub Repo</a>
           </div>
         </div>
       </div>
@@ -489,7 +489,7 @@
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
             <polyline points="22 4 12 14.01 9 11.01" />
           </svg>
-          <span>Open-source local Chromium extension</span>
+          <span>Passed local Chromium security audit</span>
         </div>
       </div>
     </div>

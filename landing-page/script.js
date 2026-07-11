@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
   "user_id": "user-8f9x2c4v1b0q7w9e",
   "user_tier": "chatgpt_plus_tier",
   "expires_at": "2026-06-25T02:39:11Z",
-  "generated_by": "Codex Auth Exporter (v1.1.0)",
+  "generated_by": "Codex Auth Exporter (v1.0.0)",
   "status": "active_session_verified"
 }`;
 
@@ -166,7 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     emptyState.style.display = 'none';
     codeState.style.display = 'block';
-    codeState.replaceChildren(createCursor());
+    codeState.textContent = '';
+    codeState.innerHTML = '<span class="cursor"></span>';
     
     btnCopy.disabled = true;
     btnDownload.disabled = true;
@@ -175,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       // State restored to success
       hostStatus.textContent = 'Secure Connection';
-      hostStatus.style.background = 'rgba(34, 211, 238, 0.1)';
+      hostStatus.style.background = 'rgba(16, 185, 129, 0.1)';
       hostStatus.style.color = 'var(--color-success)';
       
       loginStatus.textContent = 'Detected';
@@ -187,8 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const typeInterval = setInterval(() => {
         if (currentIndex < targetText.length) {
+          // Insert character before cursor
+          const char = targetText.charAt(currentIndex);
+          // For graceful line-breaking, temporarily remove cursor, add text, then restore cursor
           const textBefore = targetText.substring(0, currentIndex + 1);
-          renderCodeWithCursor(codeState, textBefore);
+          codeState.innerHTML = escapeHtml(textBefore) + '<span class="cursor"></span>';
           
           // Auto-scroll code area downward
           consoleDisplay.scrollTop = consoleDisplay.scrollHeight;
@@ -197,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           // Print complete
           clearInterval(typeInterval);
-          codeState.textContent = targetText; // Remove cursor
+          codeState.innerHTML = escapeHtml(targetText); // Remove cursor
           
           isExtracting = false;
           hasExtracted = true;
@@ -217,14 +221,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1200);
   });
 
-  const createCursor = () => {
-    const cursor = document.createElement('span');
-    cursor.className = 'cursor';
-    return cursor;
-  };
-
-  const renderCodeWithCursor = (container, text) => {
-    container.replaceChildren(document.createTextNode(text), createCursor());
+  // Safely escape HTML
+  const escapeHtml = (text) => {
+    return text
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
   };
 
   // Copy config action
@@ -234,9 +238,9 @@ document.addEventListener('DOMContentLoaded', () => {
     navigator.clipboard.writeText(mockJsonData).then(() => {
       const originalText = btnCopyText.textContent;
       btnCopyText.textContent = 'Copied to clipboard!';
-      btnCopy.style.background = 'rgba(34, 211, 238, 0.1)';
+      btnCopy.style.background = 'rgba(16, 185, 129, 0.1)';
       btnCopy.style.color = 'var(--color-success)';
-      btnCopy.style.borderColor = 'rgba(34, 211, 238, 0.3)';
+      btnCopy.style.borderColor = 'rgba(16, 185, 129, 0.3)';
       
       setTimeout(() => {
         btnCopyText.textContent = originalText;

@@ -4,3 +4,5 @@ dist/
 .DS_Store
 docs/
 publish/
+*.zip
+oauth0-output/

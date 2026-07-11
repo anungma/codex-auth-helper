@@ -1,25 +1,25 @@
 /* CSS Design System - Codex Auth Exporter */
 
 :root {
-  /* HSL color system - classic black-cyan style */
+  /* HSL color system — classic black-green style */
   --bg-dark: #060807;
   --bg-glass: rgba(10, 15, 12, 0.85);
-  --border-glass: rgba(34, 211, 238, 0.12);
-  --border-glass-hover: rgba(34, 211, 238, 0.3);
+  --border-glass: rgba(16, 185, 129, 0.12);
+  --border-glass-hover: rgba(16, 185, 129, 0.3);
   
-  --primary-glow: rgba(34, 211, 238, 0.15);
-  --primary: #22d3ee; /* classic cyan */
-  --primary-hover: #7c3aed;
-  --primary-light: #a78bfa;
+  --primary-glow: rgba(16, 185, 129, 0.15);
+  --primary: #10b981; /* classic green */
+  --primary-hover: #059669;
+  --primary-light: #34d399;
   
-  --success: #22d3ee;
+  --success: #10b981;
   --warning: #f59e0b;
   --danger: #ef4444;
-  --text-primary: #e6fcf4; /* bright white with cyan tint */
-  --text-secondary: #8dd0b8; /* silver-cyan */
+  --text-primary: #e6fcf4; /* bright white with green tint */
+  --text-secondary: #8dd0b8; /* silver-green */
   --text-muted: #4b6a5e;
   
-  --shadow-neon: 0 0 15px rgba(34, 211, 238, 0.35);
+  --shadow-neon: 0 0 15px rgba(16, 185, 129, 0.35);
   --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.55);
   
   /* Universal system font stack - avoiding Google Fonts offline issues */
@@ -48,7 +48,7 @@ body {
   flex-direction: column;
   min-height: 520px;
   background-image: 
-    radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 100% 100%, rgba(4, 120, 87, 0.08) 0%, transparent 50%);
   padding: 16px;
   position: relative;
@@ -69,7 +69,7 @@ body {
 .logo-icon {
   width: 32px;
   height: 32px;
-  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.6));
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.6));
   z-index: 2;
 }
 
@@ -79,7 +79,7 @@ body {
   left: -8px;
   width: 48px;
   height: 48px;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
   z-index: 1;
 }
 
@@ -139,7 +139,7 @@ body {
 .loader-ring {
   width: 100%;
   height: 100%;
-  border: 3px solid rgba(34, 211, 238, 0.1);
+  border: 3px solid rgba(16, 185, 129, 0.1);
   border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
@@ -354,6 +354,99 @@ body {
   color: #ffffff;
 }
 
+.workspace-panel {
+  margin-bottom: 16px;
+}
+
+.workspace-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.workspace-panel-header h4 {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 3px;
+}
+
+.workspace-panel-header p {
+  font-size: 10.5px;
+  color: var(--text-secondary);
+  line-height: 1.35;
+}
+
+.workspace-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.workspace-spinner {
+  width: 14px;
+  height: 14px;
+  display: none;
+  border: 2px solid rgba(16, 185, 129, 0.16);
+  border-top-color: var(--primary-light);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.2);
+  animation: spin 0.8s linear infinite;
+}
+
+.workspace-spinner.active {
+  display: inline-block;
+}
+
+.workspace-count-badge {
+  min-width: 28px;
+  height: 24px;
+  padding: 0 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  color: var(--primary-light);
+  font-size: 11px;
+  font-weight: 700;
+  font-family: Menlo, Monaco, Consolas, monospace;
+}
+
+.workspace-list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-height: 72px;
+  overflow-y: auto;
+}
+
+.workspace-chip {
+  max-width: 100%;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.workspace-empty {
+  font-size: 10.5px;
+  color: var(--text-muted);
+  text-align: left;
+}
+
 .text-truncate {
   white-space: nowrap;
   overflow: hidden;
@@ -362,9 +455,9 @@ body {
   font-family: monospace;
 }
 
-.text-glow-cyan {
+.text-glow-green {
   color: var(--primary-light);
-  text-shadow: 0 0 4px rgba(34, 211, 238, 0.4);
+  text-shadow: 0 0 4px rgba(16, 185, 129, 0.4);
   font-weight: 600;
 }
 
@@ -426,13 +519,13 @@ body {
 
 .btn-primary:hover {
   filter: brightness(1.1);
-  box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
   transform: translateY(-1px);
 }
 
 .btn-primary:active {
   transform: translateY(1px);
-  box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 .btn-secondary {
@@ -456,6 +549,22 @@ body {
   background: rgba(255, 255, 255, 0.08);
   border-color: var(--border-glass-hover);
   transform: translateY(-1px);
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.35);
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-primary:disabled:hover,
+.btn-secondary:disabled:hover {
+  transform: none;
+  filter: grayscale(0.35);
+  box-shadow: none;
 }
 
 .btn-secondary:active {
@@ -621,7 +730,7 @@ details summary {
   justify-content: center;
   flex-shrink: 0;
   margin-top: 1px;
-  box-shadow: 0 0 6px rgba(34, 211, 238, 0.2);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.2);
 }
 
 .step-content h5 {
@@ -675,7 +784,7 @@ details summary {
 }
 
 .path-details code {
-  color: #22d3ee;
+  color: #10b981;
   background: transparent;
   border: none;
   padding: 0;
@@ -684,7 +793,7 @@ details summary {
 /* Status style: logged in */
 .text-glow-success {
   color: var(--success);
-  text-shadow: 0 0 4px rgba(34, 211, 238, 0.4);
+  text-shadow: 0 0 4px rgba(16, 185, 129, 0.4);
   font-weight: 600;
 }
 
@@ -721,7 +830,7 @@ details summary {
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%) translateY(40px);
-  background: rgba(34, 211, 238, 0.95);
+  background: rgba(16, 185, 129, 0.95);
   backdrop-filter: blur(8px);
   color: #ffffff;
   padding: 8px 16px;
