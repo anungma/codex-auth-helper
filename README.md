@@ -1,11 +1,11 @@
-﻿# 🔐 Codex Auth Helper
+# 🔐 Codex Auth Exporter
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](./extension/manifest.json)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](./extension/manifest.json)
 [![Manifest V3](https://img.shields.io/badge/Chrome_Extension-Manifest_V3-orange.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
 [![Local Only](https://img.shields.io/badge/Security-100%25_Local-green.svg)](#-security--privacy-pledge)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 
-**Codex Auth Helper** is a secure, lightweight, and beautifully designed Chrome extension built for Codex developers to manage credentials and back up local configurations.
+**Codex Auth Exporter** is a secure, lightweight, and beautifully designed Chrome extension built for Codex developers to manage credentials and back up local configurations.
 
 Through a highly secure local sandbox mechanism, this extension helps you export your ChatGPT login session credentials quickly and safely with one click, automatically converting them into a Codex-compliant `auth.json` configuration file.
 
@@ -31,11 +31,11 @@ Through a highly secure local sandbox mechanism, this extension helps you export
 3. Enable **Developer mode** using the toggle in the top-right corner.
 4. Click **Load unpacked** in the top-left corner.
 5. Select the `extension` folder from this repository (the directory containing `manifest.json`).
-6. After installation, find **Codex Auth Helper** in the puzzle icon on the browser toolbar and pin it.
+6. After installation, find **Codex Auth Exporter** in the puzzle icon on the browser toolbar and pin it.
 
 ### 2. Export `auth.json`
 1. Make sure you are logged in to [ChatGPT](https://chatgpt.com/) in your current browser.
-2. Click the extension icon in the top-right corner to open the **Codex Auth Helper** popup.
+2. Click the extension icon in the top-right corner to open the **Codex Auth Exporter** popup.
 3. The extension automatically reads the logged-in session. If not logged in, click **Go to ChatGPT Login**.
 4. Once the status is detected, click **Export Auth Info** to download the assembled configuration file.
 

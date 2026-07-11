@@ -1,7 +1,7 @@
-﻿{
+{
   "manifest_version": 3,
-  "name": "Codex Auth Helper",
-  "short_name": "Codex Auth Helper",
+  "name": "Codex Auth Exporter",
+  "short_name": "Codex Auth Exporter",
   "version": "1.1.0",
   "description": "Securely export your logged-in ChatGPT session configuration locally, generating a Codex-compatible auth.json backup file. Fully local and offline processing.",
   "permissions": [

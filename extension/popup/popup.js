@@ -1,4 +1,4 @@
-// popup.js - Core interaction logic for Codex Auth Helper
+// popup.js - Core interaction logic for Codex Auth Exporter
 // Following local-only processing principle: no storage, no cloud upload
 
 // Store Session data globally
@@ -124,7 +124,7 @@ function bindEvents() {
         return;
       }
       if (response && response.success) {
-        showToast('\U0001f389 auth.json download started');
+        showToast('\u{1F389} auth.json download started');
       } else {
         showToast('\u274c Download failed, please try again');
       }

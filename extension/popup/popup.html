@@ -1,16 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Codex Auth Helper</title>
+  <title>Codex Auth Exporter</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 
 <body>
   <div class="app-container">
-    <!-- Bagian Header -->
+    <!-- Header Section -->
     <header class="app-header">
       <div class="logo-container">
         <div class="logo-glow"></div>
@@ -19,16 +19,16 @@
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
         </svg>
         <div class="logo-text">
-          <h1>Codex Auth Helper</h1>
-          <span class="logo-sub">Codex Auth Helper v1.0.0</span>
+          <h1>Codex Auth Exporter</h1>
+          <span class="logo-sub">Codex Auth Exporter v1.1.0</span>
         </div>
       </div>
     </header>
 
-    <!-- Konten Utama -->
+    <!-- Main Content -->
     <main class="app-main">
 
-      <!-- Status Memuat -->
+      <!-- Loading State -->
       <div id="state-loading" class="state-container active">
         <div class="loader">
           <div class="loader-ring"></div>
@@ -37,7 +37,7 @@
         <p class="loading-text">Securely fetching login info...</p>
       </div>
 
-      <!-- Status Belum Login -->
+      <!-- Unauthorized State -->
       <div id="state-unauthorized" class="state-container">
         <div class="alert-icon-container">
           <svg class="alert-icon animate-bounce" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -55,9 +55,9 @@
         </button>
       </div>
 
-      <!-- Status Sudah Login -->
+      <!-- Authorized State -->
       <div id="state-authorized" class="state-container">
-        <!-- Kartu Profil -->
+        <!-- Profile Card -->
         <div class="profile-card">
           <div class="profile-avatar-container">
             <img id="user-avatar" class="profile-avatar" src="" alt="User Avatar">
@@ -70,7 +70,7 @@
           <div id="badge-plan" class="plan-badge">FREE</div>
         </div>
 
-        <!-- Panel Detail -->
+        <!-- Details Panel -->
         <div class="details-panel glass-card">
           <div class="detail-row">
             <span class="detail-label">Status:</span>
@@ -86,7 +86,7 @@
           </div>
         </div>
 
-        <!-- Tombol Aksi -->
+        <!-- Action Button -->
         <div class="action-group">
           <button id="btn-download" class="btn-primary ripple btn-pulse">
             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -97,7 +97,7 @@
           </button>
         </div>
 
-        <!-- Panduan Penggunaan (tertutup secara default) -->
+        <!-- Usage Guide (collapsed by default) -->
         <details class="accordion-card">
           <summary class="accordion-header">
             <h4>Usage Instructions</h4>
@@ -136,7 +136,7 @@
           </div>
         </details>
 
-        <!-- Pemberitahuan Privasi Data (tertutup secara default) -->
+        <!-- Data Privacy Notice (collapsed by default) -->
         <details class="accordion-card">
           <summary class="accordion-header">
             <h4>Data Privacy Notice</h4>
@@ -172,7 +172,7 @@
 
     </main>
 
-    <!-- Bagian Footer -->
+    <!-- Footer Section -->
     <footer class="app-footer">
       <div class="safety-badge">
         <svg class="badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -183,7 +183,7 @@
       </div>
     </footer>
 
-    <!-- Notifikasi Toast -->
+    <!-- Toast Notification -->
     <div id="toast" class="toast-container">
       <div class="toast-content">
         <svg class="toast-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

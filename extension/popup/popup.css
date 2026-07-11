@@ -1,25 +1,25 @@
-/* CSS Design System - Codex Auth Helper */
+/* CSS Design System - Codex Auth Exporter */
 
 :root {
-  /* HSL color system — classic black-green style */
+  /* HSL color system - classic black-cyan style */
   --bg-dark: #060807;
   --bg-glass: rgba(10, 15, 12, 0.85);
-  --border-glass: rgba(16, 185, 129, 0.12);
-  --border-glass-hover: rgba(16, 185, 129, 0.3);
+  --border-glass: rgba(34, 211, 238, 0.12);
+  --border-glass-hover: rgba(34, 211, 238, 0.3);
   
-  --primary-glow: rgba(16, 185, 129, 0.15);
-  --primary: #10b981; /* classic green */
-  --primary-hover: #059669;
-  --primary-light: #34d399;
+  --primary-glow: rgba(34, 211, 238, 0.15);
+  --primary: #22d3ee; /* classic cyan */
+  --primary-hover: #7c3aed;
+  --primary-light: #a78bfa;
   
-  --success: #10b981;
+  --success: #22d3ee;
   --warning: #f59e0b;
   --danger: #ef4444;
-  --text-primary: #e6fcf4; /* bright white with green tint */
-  --text-secondary: #8dd0b8; /* silver-green */
+  --text-primary: #e6fcf4; /* bright white with cyan tint */
+  --text-secondary: #8dd0b8; /* silver-cyan */
   --text-muted: #4b6a5e;
   
-  --shadow-neon: 0 0 15px rgba(16, 185, 129, 0.35);
+  --shadow-neon: 0 0 15px rgba(34, 211, 238, 0.35);
   --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.55);
   
   /* Universal system font stack - avoiding Google Fonts offline issues */
@@ -48,7 +48,7 @@ body {
   flex-direction: column;
   min-height: 520px;
   background-image: 
-    radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
     radial-gradient(circle at 100% 100%, rgba(4, 120, 87, 0.08) 0%, transparent 50%);
   padding: 16px;
   position: relative;
@@ -69,7 +69,7 @@ body {
 .logo-icon {
   width: 32px;
   height: 32px;
-  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.6));
+  filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.6));
   z-index: 2;
 }
 
@@ -79,7 +79,7 @@ body {
   left: -8px;
   width: 48px;
   height: 48px;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.3) 0%, transparent 70%);
   z-index: 1;
 }
 
@@ -139,7 +139,7 @@ body {
 .loader-ring {
   width: 100%;
   height: 100%;
-  border: 3px solid rgba(16, 185, 129, 0.1);
+  border: 3px solid rgba(34, 211, 238, 0.1);
   border-top-color: var(--primary);
   border-radius: 50%;
   animation: spin 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
@@ -311,7 +311,7 @@ body {
   box-shadow: 0 0 8px rgba(29, 78, 216, 0.3);
 }
 
-/* Panel Detail */
+/* Details Panel */
 .glass-card {
   width: 100%;
   background: var(--bg-glass);
@@ -362,13 +362,13 @@ body {
   font-family: monospace;
 }
 
-.text-glow-green {
+.text-glow-cyan {
   color: var(--primary-light);
-  text-shadow: 0 0 4px rgba(16, 185, 129, 0.4);
+  text-shadow: 0 0 4px rgba(34, 211, 238, 0.4);
   font-weight: 600;
 }
 
-/* Tombol salin mini */
+/* Mini copy button */
 .btn-mini-copy, .btn-code-copy {
   background: transparent;
   border: none;
@@ -426,13 +426,13 @@ body {
 
 .btn-primary:hover {
   filter: brightness(1.1);
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
   transform: translateY(-1px);
 }
 
 .btn-primary:active {
   transform: translateY(1px);
-  box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 10px rgba(34, 211, 238, 0.3);
 }
 
 .btn-secondary {
@@ -621,7 +621,7 @@ details summary {
   justify-content: center;
   flex-shrink: 0;
   margin-top: 1px;
-  box-shadow: 0 0 6px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 6px rgba(34, 211, 238, 0.2);
 }
 
 .step-content h5 {
@@ -675,7 +675,7 @@ details summary {
 }
 
 .path-details code {
-  color: #10b981;
+  color: #22d3ee;
   background: transparent;
   border: none;
   padding: 0;
@@ -684,7 +684,7 @@ details summary {
 /* Status style: logged in */
 .text-glow-success {
   color: var(--success);
-  text-shadow: 0 0 4px rgba(16, 185, 129, 0.4);
+  text-shadow: 0 0 4px rgba(34, 211, 238, 0.4);
   font-weight: 600;
 }
 
@@ -721,7 +721,7 @@ details summary {
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%) translateY(40px);
-  background: rgba(16, 185, 129, 0.95);
+  background: rgba(34, 211, 238, 0.95);
   backdrop-filter: blur(8px);
   color: #ffffff;
   padding: 8px 16px;

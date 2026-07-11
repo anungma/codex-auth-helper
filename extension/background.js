@@ -1,4 +1,4 @@
-﻿// background.js - Service Worker for async Session fetching + file download
+// background.js - Service Worker for async Session fetching + file download
 // Following Manifest V3 best practices, avoiding loss of global state
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

@@ -104,11 +104,11 @@ document.addEventListener('DOMContentLoaded', () => {
   "user_id": "user-8f9x2c4v1b0q7w9e",
   "user_tier": "chatgpt_plus_tier",
   "expires_at": "2026-06-25T02:39:11Z",
-  "generated_by": "Codex Auth Helper (v1.0.0)",
+  "generated_by": "Codex Auth Exporter (v1.1.0)",
   "status": "active_session_verified"
 }`;
 
-  const mockLogData = `[INFO] [10:39:11] Initialize Codex Auth Helper background parser...
+  const mockLogData = `[INFO] [10:39:11] Initialize Codex Auth Exporter background parser...
 [SUCCESS] [10:39:11] Host Chromium connection ready.
 [INFO] [10:39:12] Retrieving active Session cookie from https://chatgpt.com/...
 [SUCCESS] [10:39:13] Active session credentials captured!
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
 [INFO] [10:39:13] Session expiry: 2026-06-25 10:39:11
 [INFO] [10:39:14] Building auth.json data payload per Codex spec...
 [SUCCESS] [10:39:14] Successfully exported Codex auth.json local config file!
-[INFO] [10:39:14] Waiting for user to save or copy locally。`;
+[INFO] [10:39:14] Waiting for user to save or copy locally.`;
 
   let currentActiveTab = 'json'; // json | log
   let isExtracting = false;
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       // State restored to success
       hostStatus.textContent = 'Secure Connection';
-      hostStatus.style.background = 'rgba(16, 185, 129, 0.1)';
+      hostStatus.style.background = 'rgba(34, 211, 238, 0.1)';
       hostStatus.style.color = 'var(--color-success)';
       
       loginStatus.textContent = 'Detected';
@@ -238,9 +238,9 @@ document.addEventListener('DOMContentLoaded', () => {
     navigator.clipboard.writeText(mockJsonData).then(() => {
       const originalText = btnCopyText.textContent;
       btnCopyText.textContent = 'Copied to clipboard!';
-      btnCopy.style.background = 'rgba(16, 185, 129, 0.1)';
+      btnCopy.style.background = 'rgba(34, 211, 238, 0.1)';
       btnCopy.style.color = 'var(--color-success)';
-      btnCopy.style.borderColor = 'rgba(16, 185, 129, 0.3)';
+      btnCopy.style.borderColor = 'rgba(34, 211, 238, 0.3)';
       
       setTimeout(() => {
         btnCopyText.textContent = originalText;
