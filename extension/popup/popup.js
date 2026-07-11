@@ -112,12 +112,8 @@ function bindEvents() {
   // 2. Export auth.json - delegate to background service worker for download
   document.getElementById('btn-download').addEventListener('click', () => {
     if (!globalSession) return;
-    const authJsonString = generateCodexAuthJson(globalSession);
     
-    chrome.runtime.sendMessage({
-      action: 'download_auth_json',
-      jsonContent: authJsonString
-    }, (response) => {
+    chrome.runtime.sendMessage({ action: 'export_auth_json' }, (response) => {
       if (chrome.runtime.lastError) {
         console.error('Download communication error:', chrome.runtime.lastError);
         showToast('\u274c Download failed, please try again');
@@ -177,71 +173,6 @@ function formatLocalDate(date) {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}`;
 }
 
-/**
- * Core conversion logic: transform ChatGPT Session data into Codex-compatible format
- * 
- * Known limitation: refresh_token uses ChatGPT's sessionToken,
- * which is not an actual OAuth2 refresh_token (that can only be obtained
- * through the auth.openai.com verification flow requiring phone verification
- * - the very obstacle this extension aims to bypass).
- * Codex may fail when trying to refresh the token; re-export auth.json if needed.
- */
-function generateCodexAuthJson(session) {
-  const accountId = session.account?.id || '';
-  const email = session.user?.email || '';
-  const planType = session.account?.planType || 'free';
-  const iat = Math.floor(Date.now() / 1000);
-  const exp = session.expires ? Math.floor(new Date(session.expires).getTime() / 1000) : iat + (30 * 24 * 3600);
-
-  // Create a synthetic id_token (unsigned JWT)
-  const jwtHeader = { alg: 'none', typ: 'JWT', cpa_synthetic: true };
-  const jwtPayload = {
-    iat, exp,
-    "https://api.openai.com/auth": {
-      chatgpt_account_id: accountId,
-      chatgpt_plan_type: planType,
-      chatgpt_user_id: session.user?.id || '',
-      user_id: session.user?.id || ''
-    },
-    email
-  };
-
-  const base64UrlEncode = (obj) => {
-    const str = JSON.stringify(obj);
-    const base64 = btoa(unescape(encodeURIComponent(str)));
-    return base64.replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
-  };
-
-  const syntheticIdToken = `${base64UrlEncode(jwtHeader)}.${base64UrlEncode(jwtPayload)}.synthetic`;
-
-  const authConfig = {
-    auth_mode: "chatgpt",
-    OPENAI_API_KEY: null,
-    tokens: {
-      id_token: syntheticIdToken,
-      access_token: session.accessToken,
-      refresh_token: session.sessionToken || "placeholder",
-      account_id: accountId
-    },
-    last_refresh: new Date().toISOString()
-  };
-
-  return JSON.stringify(authConfig, null, 2);
-}
-
-/**
- * Copy to clipboard utility
- */
-function copyToClipboard(text, successMsg) {
-  navigator.clipboard.writeText(text)
-    .then(() => {
-      showToast(successMsg);
-    })
-    .catch(err => {
-      console.error('Copy failed:', err);
-      showToast('\u274c Copy failed, please select manually');
-    });
-}
 
 /**
  * Show a lightweight Toast notification

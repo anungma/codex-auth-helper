@@ -16,8 +16,8 @@ Through a highly secure local sandbox mechanism, this extension helps you export
 - 📡 **Smart Local Status Detection**: Instantly detects and aligns with your browser's current ChatGPT authorization status, showing avatar, email, and subscription plan (Free / Plus / Pro).
 - ⏱️ **Real-Time Expiry Countdown**: Precisely reads the token expiry time and provides a live second-by-second countdown in the popup UI.
 - ⚙️ **Automated Format Synthesis**: Implements JWT simulation to automatically generate a **Synthetic id_token** required by the Codex specification, enabling seamless authentication.
-- 🔒 **100% Pure Local Offline Processing**:
-  - Core logic runs in a closed-loop browser sandbox. Generated configs trigger downloads via `data:` URLs, leaving no temporary Blob memory leaks.
+- 🔒 **Local Offline Processing**:
+  - Core logic runs in a closed-loop browser sandbox. Generated configs trigger browser-managed downloads without storing credentials in extension storage.
   - **Never passes through any third-party server** (zero upload endpoints, data stays off the cloud), completely eliminating privacy concerns.
 - 🎨 **Stunning Aesthetic Design**: Carefully crafted Glassmorphism UI with smooth hover transitions, animated Toast feedback, and a fast-loading landing page with multiple theme color schemes.
 
@@ -45,7 +45,7 @@ Through a highly secure local sandbox mechanism, this extension helps you export
 > Your identity credentials and session are extremely sensitive private data — **they must never be leaked or uploaded to any server**!
 
 - **Zero Sensitive Data Collection**: This extension never collects, uploads, or forwards any personal privacy data or credentials.
-- **Minimal Permission Declarations**: Only declares `downloads` (to save files) and `https://chatgpt.com/` (to securely read local sessions), eliminating any unnecessary risky behavior.
+- **Minimal Permission Declarations**: Only declares `downloads` (to save files) and `https://chatgpt.com/` (to securely read the active local session), avoiding unrelated host access.
 - **Fully Closed-Loop Code**: You can inspect `background.js` and `popup.js` at any time via browser DevTools (F12). No external or uncontrollable third-party CDN libraries are used — all static resources are bundled locally.
 
 ---

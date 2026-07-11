@@ -166,8 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     emptyState.style.display = 'none';
     codeState.style.display = 'block';
-    codeState.textContent = '';
-    codeState.innerHTML = '<span class="cursor"></span>';
+    codeState.replaceChildren(createCursor());
     
     btnCopy.disabled = true;
     btnDownload.disabled = true;
@@ -188,11 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
       
       const typeInterval = setInterval(() => {
         if (currentIndex < targetText.length) {
-          // Insert character before cursor
-          const char = targetText.charAt(currentIndex);
-          // For graceful line-breaking, temporarily remove cursor, add text, then restore cursor
           const textBefore = targetText.substring(0, currentIndex + 1);
-          codeState.innerHTML = escapeHtml(textBefore) + '<span class="cursor"></span>';
+          renderCodeWithCursor(codeState, textBefore);
           
           // Auto-scroll code area downward
           consoleDisplay.scrollTop = consoleDisplay.scrollHeight;
@@ -201,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           // Print complete
           clearInterval(typeInterval);
-          codeState.innerHTML = escapeHtml(targetText); // Remove cursor
+          codeState.textContent = targetText; // Remove cursor
           
           isExtracting = false;
           hasExtracted = true;
@@ -221,14 +217,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 1200);
   });
 
-  // Safely escape HTML
-  const escapeHtml = (text) => {
-    return text
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+  const createCursor = () => {
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    return cursor;
+  };
+
+  const renderCodeWithCursor = (container, text) => {
+    container.replaceChildren(document.createTextNode(text), createCursor());
   };
 
   // Copy config action
